@@ -1,0 +1,41 @@
+<div class="scoreboard">
+    <form #f="ngForm">
+        <div class="sameline roundNumCell blank"> </div>
+        <div *ngFor="let player of scoreBoard.board.players; index as playerIdx" class="sameline scoreCell name">
+            <input name="player{{playerIdx}}"
+                   type="text"
+                   placeholder="Player {{playerIdx}}"
+                   tabindex="{{1000 + playerIdx}}"
+                   [(ngModel)]="player.name">
+        </div>
+
+        <div *ngFor="let round of scoreBoard.board.rounds; index as roundIdx">
+            <div class="sameline roundNumCell">#{{round.roundNum}}</div>
+            <div *ngFor="let score of round.scores, index as scoreIdx" class="sameline scoreCell scores">
+                <input name="score_{{roundIdx}}_{{scoreIdx}}"
+                       type="number"
+                       min="0"
+                       max="10"
+                       tabindex="{{100000 + roundIdx * 100 + scoreIdx}}"
+                       placeholder="guess"
+                       class="guessCell"
+                       [(ngModel)]="score.guess">
+                <input name="score_{{roundIdx}}_{{scoreIdx}}"
+                       type="number"
+                       min="0"
+                       max="10"
+                       tabindex="{{100000 + roundIdx * 100 + scoreIdx + scoreBoard.board.MAX_PLAYERS}}"
+                       placeholder="actual"
+                       class="actualCell"
+                       [(ngModel)]="score.actual">
+            </div>
+        </div>
+
+        <div class="sameline roundNumCell blank"> </div>
+        <div *ngFor="let player of scoreBoard.board.players; index as playerIdx" class="sameline scoreCell name">
+            <div type="text">{{scoreBoard.board.total(player)}}</div>
+        </div>
+
+    </form>
+    <!--<pre>{{scores.board | json}}</pre>-->
+</div>

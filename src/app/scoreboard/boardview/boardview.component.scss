@@ -1,0 +1,29 @@
+@import '~sass/variables';
+
+$score-width: 5em;
+$guess-width: #{($score-width / 2.2)};
+$actual-width: #{($score-width / 2.2)};
+
+.scoreboard {
+    div.roundNumCell {
+        width: 2em;
+    }
+
+    div.scoreCell {
+        width: $score-width;
+
+
+        input.guessCell {
+            width: $guess-width;
+        }
+
+        input.actualCell {
+            width: $actual-width;
+        }
+    }
+
+
+    div.sameline {
+        display:inline-block;
+    }
+}
