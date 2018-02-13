@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {ScoreboardService} from './services/scoreboard.service';
 import {BoardviewComponent} from './boardview/boardview.component';
 import {EntryviewComponent} from './entryview/entryview.component';
+import {EnterAsTabDirective} from '../directives/enter-as-tab.directive';
 
 @NgModule({
     imports: [
@@ -13,7 +14,11 @@ import {EntryviewComponent} from './entryview/entryview.component';
     exports: [
         BoardviewComponent
     ],
-    declarations: [BoardviewComponent, EntryviewComponent],
+    declarations: [
+        BoardviewComponent,
+        EntryviewComponent,
+        EnterAsTabDirective
+    ],
     providers: [ScoreboardService]
 })
 export class ScoreboardModule {

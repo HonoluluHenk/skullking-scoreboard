@@ -6,6 +6,7 @@
                    type="text"
                    placeholder="Player {{playerIdx}}"
                    tabindex="{{1000 + playerIdx}}"
+                   appEnterAsTab=""
                    [(ngModel)]="player.name">
         </div>
 
@@ -19,6 +20,7 @@
                        tabindex="{{100000 + roundIdx * 100 + scoreIdx}}"
                        placeholder="guess"
                        class="guessCell"
+                       appEnterAsTab=""
                        [(ngModel)]="score.guess">
                 <input name="score_{{roundIdx}}_{{scoreIdx}}"
                        type="number"
@@ -27,6 +29,7 @@
                        tabindex="{{100000 + roundIdx * 100 + scoreIdx + scoreBoard.board.MAX_PLAYERS}}"
                        placeholder="actual"
                        class="actualCell"
+                       appEnterAsTab=""
                        [(ngModel)]="score.actual">
             </div>
         </div>
