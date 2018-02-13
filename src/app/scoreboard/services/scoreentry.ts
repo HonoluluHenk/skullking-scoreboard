@@ -77,7 +77,9 @@ export class ScoreEntry {
 
         // add bonus
         if (win) {
-            result += (this.piratesCaught || 0) + (this.skullKingsCaught || 0);
+            let pirateScore = (this.piratesCaught || 0) * 30;
+            let skullKingScore = (this.skullKingsCaught || 0) * 50;
+            result += pirateScore + skullKingScore;
         }
 
         this._total = result;

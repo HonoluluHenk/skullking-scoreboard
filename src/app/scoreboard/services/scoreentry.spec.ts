@@ -1,16 +1,17 @@
-import {ScoreboardService} from './scoreboard.service';
-import {inject, TestBed} from '@angular/core/testing';
+import {inject} from '@angular/core/testing';
 import {ScoreEntry} from './scoreentry';
 
 fdescribe('ScoreEntry', () => {
     const ALL_ROUNDS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-    const score = (guess: number, actual: number, round: number = 1) => {
+    const score = (guess: number, actual: number, round: number = 1, bonusPirates: number = null,
+                   bonusKings: number = null) => {
         const score = new ScoreEntry(round);
         score.guess = guess;
         score.actual = actual;
+        score.piratesCaught = bonusPirates;
+        score.skullKingsCaught = bonusKings;
         return score;
-
     };
 
     beforeEach(() => {
@@ -60,7 +61,7 @@ fdescribe('ScoreEntry', () => {
         expect(score.total).toBe(0);
     });
 
-    fit("should total 0 guess correctly", () => {
+    it("should total 0 guess correctly", () => {
         ALL_ROUNDS.forEach((round) => {
             let possibleWins = new Array<number>(round + 1)
                 .fill(0)
@@ -90,6 +91,30 @@ fdescribe('ScoreEntry', () => {
         expect(score(8, 8, 10).total).toBe(160);
         expect(score(8, 9, 10).total).toBe(-10);
         expect(score(8, 10, 10).total).toBe(-20);
-    })
+    });
+
+    it("should calculate skull king bonuc correctly", () => {
+        // just for reference: win, no bonus
+        expect(score(1, 1, 5, null, null).total).toBe(20);
+
+        expect(score(1, 1, 5, 0, null).total).toBe(20);
+        expect(score(1, 1, 5, 1, null).total).toBe(50);
+        expect(score(1, 1, 5, 2, null).total).toBe(80);
+
+        expect(score(1, 1, 5, null, 0).total).toBe(20);
+        expect(score(1, 1, 5, null, 1).total).toBe(70);
+        expect(score(1, 1, 5, null, 2).total).toBe(120);
+
+        // just for reference: lose, no bonus
+        expect(score(1, 0, 5, null, null).total).toBe(-10);
+
+        expect(score(1, 0, 5, 0, null).total).toBe(-10);
+        expect(score(1, 0, 5, 1, null).total).toBe(-10);
+        expect(score(1, 0, 5, 2, null).total).toBe(-10);
+
+        expect(score(1, 0, 5, null, 0).total).toBe(-10);
+        expect(score(1, 0, 5, null, 1).total).toBe(-10);
+        expect(score(1, 0, 5, null, 2).total).toBe(-10);
+    });
 
 });
