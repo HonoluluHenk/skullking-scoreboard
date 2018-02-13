@@ -11,7 +11,7 @@ export class EnterAsTabDirective {
             if (event.which === 13) {
                 event.preventDefault();
 
-                const nextElem = this.findNextTabbableElement(elem);
+                const nextElem = EnterAsTabDirective.findNextTabbableElement(elem);
                 nextElem.focus();
             } else {
                 return true;
@@ -21,7 +21,7 @@ export class EnterAsTabDirective {
         elem.addEventListener("keypress", listener);
     }
 
-    private findNextTabbableElement(elem: HTMLInputElement) {
+    private static findNextTabbableElement(elem: HTMLInputElement) {
         const tabbables = Array.from(document.querySelectorAll("input"));
 
         tabbables.sort((a, b) => {

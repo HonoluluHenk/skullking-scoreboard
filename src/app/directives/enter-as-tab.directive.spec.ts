@@ -1,8 +1,24 @@
-import { EnterAsTabDirective } from './enter-as-tab.directive';
+import {EnterAsTabDirective} from './enter-as-tab.directive';
+import {ElementRef} from '@angular/core';
 
 describe('EnterAsTabDirective', () => {
-  it('should create an instance', () => {
-    const directive = new EnterAsTabDirective();
-    expect(directive).toBeTruthy();
-  });
+    let elem: HTMLInputElement;
+    var directive;
+
+    beforeEach(() => {
+        console.log("beforeeach");
+        elem = document.createElement("input");
+        directive = new EnterAsTabDirective(new ElementRef(elem));
+    });
+
+    it('should create an instance', () => {
+        console.error("foo directive", elem);
+        expect(elem).toBeTruthy();
+    });
+
+    it("should test something", () => {
+
+    });
+
 });
+
