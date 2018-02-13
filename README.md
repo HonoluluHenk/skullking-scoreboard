@@ -1,4 +1,10 @@
-# Skullking
+# Skull King scoreboard
+
+Scoreboard for the famous [Skull King card game](https://www.schmidtspiele.de/de/produkte/details/product/skull-king-75024.html)
+by Brent Beck, published by [Schmidt Spiele](https://www.schmidtspiele.de).
+
+
+# Tech stuff
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
