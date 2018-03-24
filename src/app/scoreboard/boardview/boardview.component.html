@@ -1,6 +1,6 @@
 <div class="scoreboard">
     <form #f="ngForm">
-        <div class="sameline roundNumCell blank"> </div>
+        <div class="sameline roundNumCell blank"></div>
         <div *ngFor="let player of scoreBoard.board.players; index as playerIdx" class="sameline scoreCell name">
             <input name="player{{playerIdx}}"
                    type="text"
@@ -12,29 +12,35 @@
 
         <div *ngFor="let round of scoreBoard.board.rounds; index as roundIdx">
             <div class="sameline roundNumCell">#{{round.roundNum}}</div>
-            <div *ngFor="let score of round.scores, index as scoreIdx" class="sameline scoreCell scores">
-                <input name="score_{{roundIdx}}_{{scoreIdx}}"
-                       type="number"
-                       min="0"
-                       max="10"
-                       tabindex="{{100000 + roundIdx * 100 + scoreIdx}}"
-                       placeholder="guess"
-                       class="guessCell"
-                       appEnterAsTab=""
-                       [(ngModel)]="score.guess">
-                <input name="score_{{roundIdx}}_{{scoreIdx}}"
-                       type="number"
-                       min="0"
-                       max="10"
-                       tabindex="{{100000 + roundIdx * 100 + scoreIdx + scoreBoard.board.MAX_PLAYERS}}"
-                       placeholder="actual"
-                       class="actualCell"
-                       appEnterAsTab=""
-                       [(ngModel)]="score.actual">
+            <div *ngFor="let score of round.scores, index as playerIdx" class="sameline scoreCell scores">
+                <app-score [score]="score"
+                           [roundIdx]="roundIdx"
+                           [maxRounds]="scoreBoard.board.MAX_ROUNDS"
+                           [playerIdx]="playerIdx"
+                           [maxPlayers]="scoreBoard.board.MAX_PLAYERS"
+                ></app-score>
+                <!--<input name="score_{{roundIdx}}_{{scoreIdx}}"-->
+                <!--type="number"-->
+                <!--min="0"-->
+                <!--max="10"-->
+                <!--tabindex="{{100000 + roundIdx * 100 + scoreIdx}}"-->
+                <!--placeholder="guess"-->
+                <!--class="guessCell"-->
+                <!--appEnterAsTab=""-->
+                <!--[(ngModel)]="score.guess">-->
+                <!--<input name="score_{{roundIdx}}_{{scoreIdx}}"-->
+                <!--type="number"-->
+                <!--min="0"-->
+                <!--max="10"-->
+                <!--tabindex="{{100000 + roundIdx * 100 + scoreIdx + scoreBoard.board.MAX_PLAYERS}}"-->
+                <!--placeholder="actual"-->
+                <!--class="actualCell"-->
+                <!--appEnterAsTab=""-->
+                <!--[(ngModel)]="score.actual">-->
             </div>
         </div>
 
-        <div class="sameline roundNumCell blank"> </div>
+        <div class="sameline roundNumCell blank"></div>
         <div *ngFor="let player of scoreBoard.board.players; index as playerIdx" class="sameline scoreCell name">
             <div type="text">{{scoreBoard.board.total(player)}}</div>
         </div>

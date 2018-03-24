@@ -23,7 +23,7 @@ export class Board {
         .map((a, index) => new Round(index + 1));
     private _players: Player[] = new Array(MAX_PLAYERS)
         .fill(null)
-        .map((a, index) => new Player(index < DEFAULT_ENABLED_PLAYERS, `Player ${index + 1}`));
+        .map((a, index) => new Player(index < DEFAULT_ENABLED_PLAYERS));
 
     constructor() {
     }

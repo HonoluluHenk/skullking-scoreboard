@@ -1,8 +1,8 @@
-@import '~sass/variables';
+//@import '~sass/variables';
+@import "../../../sass/variables";
 
-$score-width: 5em;
-$guess-width: #{($score-width / 2.2)};
-$actual-width: #{($score-width / 2.2)};
+$guess-width: #{($score-column-width / 2.2)};
+$actual-width: #{($score-column-width / 2.2)};
 
 .scoreboard {
     div.roundNumCell {
@@ -10,8 +10,7 @@ $actual-width: #{($score-width / 2.2)};
     }
 
     div.scoreCell {
-        width: $score-width;
-
+        width: $score-column-width;
 
         input.guessCell {
             width: $guess-width;
@@ -21,7 +20,6 @@ $actual-width: #{($score-width / 2.2)};
             width: $actual-width;
         }
     }
-
 
     div.sameline {
         display:inline-block;

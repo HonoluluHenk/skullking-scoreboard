@@ -1,0 +1,26 @@
+<!--<div *ngFor="let score of round.scores, index as scoreIdx" class="sameline scoreCell scores">-->
+<div class="sameline scoreCell scores" style="position: relative; top:1px; right: 0; left: 0;">
+    <input name="score_{{roundIdx}}_{{playerIdx}}"
+           type="number"
+           min="0"
+           max="10"
+           tabindex="{{100000 + roundIdx * 100 + playerIdx}}"
+           placeholder="guess"
+           class="guessCell"
+           appEnterAsTab=""
+           [(ngModel)]="score.guess"
+    >
+    <input name="score_{{roundIdx}}_{{playerIdx}}"
+           type="number"
+           min="0"
+           max="10"
+           tabindex="{{100000 + roundIdx * 100 + playerIdx + maxPlayers}}"
+           placeholder="actual"
+           class="actualCell"
+           appEnterAsTab=""
+           [(ngModel)]="score.actual"
+           (focus)="setFocus()"
+           (blur)="blurFocus()"
+    >
+    <app-bonus-popup [(kingBonus)]="score.skullKingsCaught" [(pirateBonus)]="score.piratesCaught"></app-bonus-popup>
+</div>
