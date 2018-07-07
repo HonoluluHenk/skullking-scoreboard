@@ -1,11 +1,11 @@
 export class ScoreEntry {
-    private _guess?: number = null;
-    private _actual?: number = null;
+    private _guess: number | null = null;
+    private _actual: number | null  = null;
 
-    private _piratesCaught?: number = null;
-    private _skullKingsCaught?: number = null;
+    private _piratesCaught: number | null = null;
+    private _skullKingsCaught: number | null = null;
 
-    private _total: number = 0;
+    private _total = 0;
 
     constructor(readonly round: number) {
         if ((round || 0) <= 0) {
@@ -13,44 +13,54 @@ export class ScoreEntry {
         }
     }
 
-    get guess() {
+    get guess(): number | null {
         return this._guess;
     }
 
-    set guess(theGuess: number) {
+    set guess(theGuess: number | null) {
         this._guess = ScoreEntry.validateGt0(theGuess);
         this.update();
     }
 
-    public get actual(): number {
+    public get actual(): number | null {
         return this._actual;
     }
 
-    public set actual(value: number) {
+    public set actual(value: number | null) {
         this._actual = ScoreEntry.validateGt0(value);
         this.update();
     }
 
-    public get piratesCaught(): number {
+    public get piratesCaught(): number | null {
         return this._piratesCaught;
     }
 
-    public set piratesCaught(value: number) {
+    public set piratesCaught(value: number | null) {
         this._piratesCaught = ScoreEntry.validateGt0(value);
         this.update();
     }
 
-    public get skullKingsCaught(): number {
+    public get skullKingsCaught(): number | null {
         return this._skullKingsCaught;
     }
 
-    public set skullKingsCaught(value: number) {
+    public set skullKingsCaught(value: number | null) {
         this._skullKingsCaught = ScoreEntry.validateGt0(value);
         this.update();
     }
 
     public get total(): number {
         return this._total;
+    }
+
+    private static validateGt0(aNumber: number | null): number | null{
+        if (aNumber !== null) {
+            if (aNumber < 0) {
+                throw new Error('score numbers must be >= 0');
+            }
+        }
+
+        return aNumber;
     }
 
     private update() {
@@ -63,36 +73,26 @@ export class ScoreEntry {
         let result;
 
         if (this.guess === 0) {
-            let points = this.round * 10;
+            const points = this.round * 10;
 
             result = win ? points : -points;
         } else {
             if (win) {
                 result = 20 * this.guess;
             } else {
-                let difference = Math.abs(this.guess - this.actual);
+                const difference = Math.abs(this.guess - this.actual);
                 result = -10 * difference;
             }
         }
 
         // add bonus
         if (win) {
-            let pirateScore = (this.piratesCaught || 0) * 30;
-            let skullKingScore = (this.skullKingsCaught || 0) * 50;
+            const pirateScore = (this.piratesCaught || 0) * 30;
+            const skullKingScore = (this.skullKingsCaught || 0) * 50;
             result += pirateScore + skullKingScore;
         }
 
         this._total = result;
-    }
-
-    private static validateGt0(aNumber: number): number {
-        if (aNumber !== null) {
-            if (aNumber < 0) {
-                throw new Error("score numbers must be >= 0");
-            }
-        }
-
-        return aNumber;
     }
 
 }

@@ -7,11 +7,11 @@ import {ScoreEntry} from '../services/scoreentry';
     styleUrls: ['./score.component.scss']
 })
 export class ScoreComponent implements OnInit {
-    @Input() score: ScoreEntry;
-    @Input() roundIdx: number;
-    @Input() maxRounds: number;
-    @Input() playerIdx: number;
-    @Input() maxPlayers: number;
+    @Input() score?: ScoreEntry;
+    @Input() roundIdx?: number;
+    @Input() maxRounds?: number;
+    @Input() playerIdx?: number;
+    @Input() maxPlayers?: number;
     public hidden = true;
 
     constructor() {

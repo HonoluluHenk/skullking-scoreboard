@@ -7,9 +7,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class BonusPopupComponent implements OnInit {
 
-    @Input() kingBonus: number;
+    @Input() kingBonus?: number;
     @Output() kingBonusChange = new EventEmitter<number>();
-    @Input() pirateBonus: number;
+    @Input() pirateBonus?: number;
     @Output() pirateBonusBonusChange = new EventEmitter<number>();
 
     constructor() {

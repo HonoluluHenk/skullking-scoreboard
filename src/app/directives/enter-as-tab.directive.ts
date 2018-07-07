@@ -13,6 +13,7 @@ export class EnterAsTabDirective {
 
                 const nextElem = EnterAsTabDirective.findNextTabbableElement(elem);
                 nextElem.focus();
+                return false;
             } else {
                 return true;
             }
